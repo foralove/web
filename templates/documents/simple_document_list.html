@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}DocMgr - 简易文档列表{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2 class="mb-0">简易文档列表</h2>
+    </div>
+    <div class="card-body">
+        {% if documents %}
+            <div class="list-group">
+                {% for document in documents %}
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+                    <span class="fw-bold">{{ document.title }}</span>
+                    <a href="{{ document.file.url }}" target="_blank" class="btn btn-sm btn-primary">下载</a>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="text-center py-5">
+                <p class="mb-3">您还没有上传任何文档。</p>
+                <a href="{% url 'upload_document' %}" class="btn btn-primary">上传您的第一个文档</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %} 

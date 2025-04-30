@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}DocMgr - 上传文档{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2 class="mb-0">上传文档</h2>
+    </div>
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="id_title" class="form-label">标题:</label>
+                {{ form.title|safe }}
+            </div>
+            <div class="mb-3">
+                <label for="id_file" class="form-label">文件:</label>
+                {{ form.file|safe }}
+            </div>
+            <button type="submit" class="btn btn-primary">上传</button>
+            <a href="{% url 'document_list' %}" class="btn btn-secondary">取消</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    #id_title, #id_file {
+        display: block;
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+    }
+</style>
+{% endblock %}
