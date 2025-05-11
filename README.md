@@ -86,7 +86,6 @@ pip install markdown python-markdown-math chardet
 
 ```python
 INSTALLED_APPS = [
-    # ...其他应用
     'markdown_renderer',
 ]
 ```
@@ -96,11 +95,10 @@ INSTALLED_APPS = [
 在您的`settings.py`文件中添加Markdown渲染器配置：
 
 ```python
-# Markdown渲染器配置
 MARKDOWN_RENDER = {
-    'MAX_SIZE': 5 * 1024 * 1024,  # 5MB
-    'STYLE_THEME': 'github.css',  # 主题样式
-    'ENABLE_UNSAFE_EXTENSIONS': False,  # 禁用不安全扩展
+    'MAX_SIZE': 5 * 1024 * 1024,
+    'STYLE_THEME': 'github.css', 
+    'ENABLE_UNSAFE_EXTENSIONS': False,
     'EXTENSION_CONFIGS': {
         'codehilite': {
             'linenums': True,
@@ -165,7 +163,6 @@ static/
 from markdown_renderer.utils import render_markdown
 
 def view_markdown(request, file_path):
-    # 渲染Markdown文件
     html_content = render_markdown(file_path)
     
     return render(request, 'your_template.html', {
@@ -179,10 +176,8 @@ def view_markdown(request, file_path):
 ```html
 {% load md_render %}
 
-<!-- 渲染Markdown文件 -->
 {% render_markdown file_path="path/to/file.md" %}
 
-<!-- 或者渲染Markdown文本 -->
 {{ markdown_text|markdown }}
 ```
 
