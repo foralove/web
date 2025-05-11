@@ -1,1 +1,8 @@
-Django==5.0.1 
+# 基础框架
+Django==5.0.1
+
+# Markdown渲染相关
+markdown==3.4.1
+python-markdown-math==0.9
+Pygments==2.15.1  # 用于代码高亮
+chardet==5.2.0  # 用于文件编码检测 
