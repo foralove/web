@@ -72,7 +72,6 @@ def hello_world():
     """打印Hello World"""
     print("Hello, World!")
     
-    # 循环示例
     for i in range(5):
         print(f"Count: {i}")
         
@@ -82,7 +81,6 @@ def hello_world():
 ```java
 public class HelloWorld {
     public static void main(String[] args) {
-        // 打印Hello World
         System.out.println("Hello, World!");
     }
 }

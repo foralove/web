@@ -1,11 +1,6 @@
-# Markdown渲染模块依赖
-# 创建日期: 2024-05-11
+Django>=3.2.0
 
-# 基础框架依赖
-Django>=3.2.0  # 支持Django 3.2及以上版本
-
-# Markdown核心依赖
-markdown==3.4.1  # Markdown解析引擎
-python-markdown-math==0.9  # 数学公式支持
-Pygments==2.15.1  # 代码语法高亮
-chardet==5.2.0  # 自动检测文件编码 
+markdown==3.4.1
+python-markdown-math==0.9 
+Pygments==2.15.1
+chardet==5.2.0
