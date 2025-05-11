@@ -1,0 +1,323 @@
+/* Obsidian风格的Markdown样式 */
+
+/* 基础容器样式 */
+.md-container {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #d4d4d4;
+  background-color: #282c34;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 20px;
+  word-wrap: break-word;
+}
+
+/* 标题样式 */
+.md-container h1,
+.md-container h2,
+.md-container h3,
+.md-container h4,
+.md-container h5,
+.md-container h6 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #e2e2e2;
+}
+
+.md-container h1 {
+  font-size: 2em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #3e4451;
+}
+
+.md-container h2 {
+  font-size: 1.5em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #3e4451;
+}
+
+.md-container h3 {
+  font-size: 1.25em;
+}
+
+.md-container h4 {
+  font-size: 1em;
+}
+
+.md-container h5 {
+  font-size: 0.875em;
+}
+
+.md-container h6 {
+  font-size: 0.85em;
+  color: #abb2bf;
+}
+
+/* 段落和文本样式 */
+.md-container p {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.md-container strong {
+  font-weight: 600;
+  color: #e2e2e2;
+}
+
+.md-container em {
+  font-style: italic;
+  color: #c678dd;
+}
+
+.md-container del {
+  text-decoration: line-through;
+  color: #7f848e;
+}
+
+/* 链接样式 */
+.md-container a {
+  color: #61afef;
+  text-decoration: none;
+}
+
+.md-container a:hover {
+  text-decoration: underline;
+}
+
+/* 列表样式 */
+.md-container ul,
+.md-container ol {
+  padding-left: 2em;
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.md-container ul ul,
+.md-container ul ol,
+.md-container ol ul,
+.md-container ol ol {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.md-container li {
+  margin-bottom: 0.25em;
+}
+
+.md-container li + li {
+  margin-top: 0.25em;
+}
+
+/* 引用块样式 */
+.md-container blockquote {
+  margin: 0;
+  padding: 0 1em;
+  color: #abb2bf;
+  border-left: 0.25em solid #3e4451;
+  background-color: #2c313a;
+}
+
+.md-container blockquote > :first-child {
+  margin-top: 0;
+}
+
+.md-container blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+/* 代码样式 */
+.md-container code {
+  padding: 0.2em 0.4em;
+  margin: 0;
+  font-size: 85%;
+  background-color: #2c313a;
+  border-radius: 3px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  color: #e5c07b;
+}
+
+.md-container pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #21252b;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+.md-container pre code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  background-color: transparent;
+  border: 0;
+  color: #abb2bf;
+}
+
+/* 表格样式 */
+.md-container table {
+  border-collapse: collapse;
+  width: 100%;
+  overflow: auto;
+  margin-top: 0;
+  margin-bottom: 16px;
+  background-color: #21252b;
+}
+
+.md-container table th {
+  font-weight: 600;
+  color: #e2e2e2;
+}
+
+.md-container table th,
+.md-container table td {
+  padding: 6px 13px;
+  border: 1px solid #3e4451;
+}
+
+.md-container table tr {
+  background-color: #282c34;
+  border-top: 1px solid #3e4451;
+}
+
+.md-container table tr:nth-child(2n) {
+  background-color: #2c313a;
+}
+
+/* 水平线样式 */
+.md-container hr {
+  height: 0.25em;
+  padding: 0;
+  margin: 24px 0;
+  background-color: #3e4451;
+  border: 0;
+}
+
+/* 图片样式 */
+.md-container img {
+  max-width: 100%;
+  box-sizing: border-box;
+  background-color: #21252b;
+  border: 1px solid #3e4451;
+}
+
+/* 目录样式 */
+.md-container .toc {
+  background-color: #21252b;
+  border: 1px solid #3e4451;
+  border-radius: 4px;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+}
+
+.md-container .toc ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.md-container .toc li {
+  margin-bottom: 4px;
+}
+
+.md-container .toc a {
+  display: block;
+  padding: 2px 0;
+  text-decoration: none;
+  color: #61afef;
+}
+
+.md-container .toc a:hover {
+  text-decoration: underline;
+}
+
+/* 错误消息样式 */
+.markdown-error {
+  background-color: #442c2d;
+  color: #e06c75;
+  padding: 16px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  border: 1px solid #c24648;
+}
+
+.markdown-error h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 18px;
+  color: #e2e2e2;
+}
+
+.markdown-error p {
+  margin-bottom: 0;
+}
+
+/* Pygments语法高亮样式 - Obsidian风格 */
+.highlight { background-color: #21252b; color: #abb2bf; }
+.highlight .hll { background-color: #3e4451; }
+.highlight .c { color: #7f848e; font-style: italic; } /* Comment */
+.highlight .err { color: #e06c75; } /* Error */
+.highlight .k { color: #c678dd; } /* Keyword */
+.highlight .l { color: #98c379; } /* Literal */
+.highlight .n { color: #abb2bf; } /* Name */
+.highlight .o { color: #56b6c2; } /* Operator */
+.highlight .p { color: #abb2bf; } /* Punctuation */
+.highlight .cm { color: #7f848e; font-style: italic; } /* Comment.Multiline */
+.highlight .cp { color: #7f848e; } /* Comment.Preproc */
+.highlight .c1 { color: #7f848e; font-style: italic; } /* Comment.Single */
+.highlight .cs { color: #7f848e; } /* Comment.Special */
+.highlight .gd { color: #e06c75; } /* Generic.Deleted */
+.highlight .ge { font-style: italic; } /* Generic.Emph */
+.highlight .gh { color: #abb2bf; font-weight: bold; } /* Generic.Heading */
+.highlight .gi { color: #98c379; } /* Generic.Inserted */
+.highlight .gp { color: #7f848e; font-weight: bold; } /* Generic.Prompt */
+.highlight .gs { font-weight: bold; } /* Generic.Strong */
+.highlight .gu { color: #56b6c2; font-weight: bold; } /* Generic.Subheading */
+.highlight .kc { color: #c678dd; } /* Keyword.Constant */
+.highlight .kd { color: #c678dd; } /* Keyword.Declaration */
+.highlight .kn { color: #c678dd; } /* Keyword.Namespace */
+.highlight .kp { color: #c678dd; } /* Keyword.Pseudo */
+.highlight .kr { color: #c678dd; } /* Keyword.Reserved */
+.highlight .kt { color: #e5c07b; } /* Keyword.Type */
+.highlight .ld { color: #98c379; } /* Literal.Date */
+.highlight .m { color: #d19a66; } /* Literal.Number */
+.highlight .s { color: #98c379; } /* Literal.String */
+.highlight .na { color: #d19a66; } /* Name.Attribute */
+.highlight .nb { color: #e5c07b; } /* Name.Builtin */
+.highlight .nc { color: #e5c07b; } /* Name.Class */
+.highlight .no { color: #e06c75; } /* Name.Constant */
+.highlight .nd { color: #56b6c2; } /* Name.Decorator */
+.highlight .ni { color: #abb2bf; } /* Name.Entity */
+.highlight .ne { color: #e06c75; } /* Name.Exception */
+.highlight .nf { color: #61afef; } /* Name.Function */
+.highlight .nl { color: #abb2bf; } /* Name.Label */
+.highlight .nn { color: #abb2bf; } /* Name.Namespace */
+.highlight .nx { color: #61afef; } /* Name.Other */
+.highlight .py { color: #abb2bf; } /* Name.Property */
+.highlight .nt { color: #e06c75; } /* Name.Tag */
+.highlight .nv { color: #e06c75; } /* Name.Variable */
+.highlight .ow { color: #56b6c2; } /* Operator.Word */
+.highlight .w { color: #abb2bf; } /* Text.Whitespace */
+.highlight .mf { color: #d19a66; } /* Literal.Number.Float */
+.highlight .mh { color: #d19a66; } /* Literal.Number.Hex */
+.highlight .mi { color: #d19a66; } /* Literal.Number.Integer */
+.highlight .mo { color: #d19a66; } /* Literal.Number.Oct */
+.highlight .sb { color: #98c379; } /* Literal.String.Backtick */
+.highlight .sc { color: #98c379; } /* Literal.String.Char */
+.highlight .sd { color: #98c379; } /* Literal.String.Doc */
+.highlight .s2 { color: #98c379; } /* Literal.String.Double */
+.highlight .se { color: #98c379; } /* Literal.String.Escape */
+.highlight .sh { color: #98c379; } /* Literal.String.Heredoc */
+.highlight .si { color: #98c379; } /* Literal.String.Interpol */
+.highlight .sx { color: #98c379; } /* Literal.String.Other */
+.highlight .sr { color: #56b6c2; } /* Literal.String.Regex */
+.highlight .s1 { color: #98c379; } /* Literal.String.Single */
+.highlight .ss { color: #56b6c2; } /* Literal.String.Symbol */
+.highlight .bp { color: #e5c07b; } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #e06c75; } /* Name.Variable.Class */
+.highlight .vg { color: #e06c75; } /* Name.Variable.Global */
+.highlight .vi { color: #e06c75; } /* Name.Variable.Instance */
+.highlight .il { color: #d19a66; } /* Literal.Number.Integer.Long */ 

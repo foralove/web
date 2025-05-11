@@ -25,7 +25,10 @@
                         <tr>
                             <td>{{ document.title }}</td>
                             <td>{{ document.uploaded_at|date:"Y-m-d H:i" }}</td>
-                            <td><a href="{{ document.file.url }}" target="_blank" class="btn btn-sm btn-primary">下载</a></td>
+                            <td>
+                                <a href="{{ document.file.url }}" target="_blank" class="btn btn-sm btn-primary">下载</a>
+                                <a href="{% url 'document_view' document.id %}" class="btn btn-sm btn-info">查看</a>
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>

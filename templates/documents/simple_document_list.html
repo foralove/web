@@ -13,7 +13,10 @@
                 {% for document in documents %}
                 <div class="list-group-item d-flex justify-content-between align-items-center">
                     <span class="fw-bold">{{ document.title }}</span>
-                    <a href="{{ document.file.url }}" target="_blank" class="btn btn-sm btn-primary">下载</a>
+                    <div>
+                        <a href="{{ document.file.url }}" target="_blank" class="btn btn-sm btn-primary">下载</a>
+                        <a href="{% url 'document_view' document.id %}" class="btn btn-sm btn-info">查看</a>
+                    </div>
                 </div>
                 {% endfor %}
             </div>
