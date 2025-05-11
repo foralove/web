@@ -44,6 +44,9 @@ class MarkdownRenderer:
         'mdx_math': {
             'enable_dollar_delimiter': True, 
             'add_preview': True, 
+        },
+        'tables': {
+            'use_align_attribute': True
         }
     }
     
@@ -52,6 +55,10 @@ class MarkdownRenderer:
         config = getattr(settings, 'MARKDOWN_RENDER', {})
         extensions = config.get('EXTENSIONS', cls.DEFAULT_EXTENSIONS)
         
+        # 确保tables扩展被包含
+        if 'tables' not in extensions:
+            extensions.append('tables')
+            
         if config.get('ENABLE_UNSAFE_EXTENSIONS', False):
             extensions.extend(cls.UNSAFE_EXTENSIONS)
             
@@ -73,34 +80,19 @@ class MarkdownRenderer:
     
     @classmethod
     def _process_image_links(cls, content: str, file_path: str) -> str:
-        """
-        处理Markdown中的图片链接，将相对路径转换为data URI
-        
-        Args:
-            content: Markdown内容
-            file_path: Markdown文件路径
-            
-        Returns:
-            处理后的Markdown内容
-        """
         def replace_image(match):
             alt_text = match.group(1)
             img_path = match.group(2).strip()
             
-            # 如果是网络路径或data URI，直接返回
             if img_path.startswith(('http://', 'https://', 'data:')):
                 return f"![{alt_text}]({img_path})"
                 
-            # 处理相对路径
             if not os.path.isabs(img_path):
                 base_dir = os.path.dirname(os.path.abspath(file_path))
                 
-                # 特殊处理 ./images/ 开头的路径
                 if img_path.startswith('./images/') or img_path.startswith('images/'):
-                    # 尝试从文件所在目录查找
                     full_path = os.path.normpath(os.path.join(base_dir, img_path))
-                    
-                    # 如果文件不存在，尝试从E:\GitHub\markdown目录查找
+
                     if not os.path.exists(full_path):
                         markdown_root = r'E:\GitHub\markdown'
                         if img_path.startswith('./'):
@@ -110,11 +102,9 @@ class MarkdownRenderer:
                     img_path = full_path
                 else:
                     img_path = os.path.normpath(os.path.join(base_dir, img_path))
-            
-            # 调试信息
+        
             print(f"处理图片: alt='{alt_text}', 路径='{img_path}'")
             
-            # 检查文件是否存在
             if not os.path.exists(img_path):
                 error_msg = f"""
                 <div style="color: red; border: 1px solid red; padding: 10px; margin: 10px 0; background-color: #ffeeee;">
@@ -124,16 +114,13 @@ class MarkdownRenderer:
                 print(f"图片未找到: {img_path}")
                 return error_msg
             
-            # 读取图片并转换为data URI
             try:
                 with open(img_path, 'rb') as img_file:
                     img_data = img_file.read()
                     
-                # 获取MIME类型
                 import mimetypes
                 mime_type, _ = mimetypes.guess_type(img_path)
                 if not mime_type:
-                    # 根据文件扩展名判断MIME类型
                     ext = os.path.splitext(img_path.lower())[1]
                     mime_map = {
                         '.png': 'image/png',
@@ -146,7 +133,6 @@ class MarkdownRenderer:
                     }
                     mime_type = mime_map.get(ext, 'image/png')
                 
-                # 转换为Base64
                 img_base64 = base64.b64encode(img_data).decode('utf-8')
                 data_uri = f"data:{mime_type};base64,{img_base64}"
                 
@@ -162,19 +148,45 @@ class MarkdownRenderer:
                 print(f"图片加载错误 {img_path}: {str(e)}")
                 return error_msg
         
-        # 调试信息
         print(f"处理Markdown文件中的图片: {file_path}")
         
-        # 匹配所有图片引用 - 使用更精确的正则表达式
         img_pattern = r'!\[(.*?)\]\s*\((.*?)\)'
         processed = re.sub(img_pattern, replace_image, content)
         
-        # 调试信息
         if '![' in content:
             print(f"原始内容中的图片引用数量: {content.count('![')}")
             print(f"处理后内容中的图片引用数量: {processed.count('![')}")
             
         return processed
+    
+    @classmethod
+    def _add_table_styles(cls, html_content: str) -> str:
+        """为所有表格添加Bootstrap样式"""
+        # 将普通表格转换为Bootstrap样式表格
+        html_content = html_content.replace('<table>', '<table class="table table-bordered table-striped">')
+        
+        # 查找表格
+        table_pattern = r'<table[^>]*>'
+        tables = re.findall(table_pattern, html_content)
+        
+        # 检查是否需要添加样式
+        for table in tables:
+            if 'class=' not in table:
+                styled_table = table.replace('<table', '<table class="table table-bordered table-striped"')
+                html_content = html_content.replace(table, styled_table)
+            elif 'table ' not in table and 'table"' not in table:
+                styled_table = table.replace('class="', 'class="table table-bordered table-striped ')
+                html_content = html_content.replace(table, styled_table)
+        
+        # 添加表格容器样式，使表格可滚动
+        html_content = re.sub(
+            r'(<table[^>]*>.*?</table>)',
+            r'<div class="table-responsive">\1</div>',
+            html_content,
+            flags=re.DOTALL
+        )
+        
+        return html_content
     
     @classmethod
     def render_markdown_content(cls, content: str, file_path: Optional[str] = None) -> SafeString:
@@ -193,6 +205,9 @@ class MarkdownRenderer:
             )
             
             html_content = md.convert(content)
+            
+            # 处理表格样式
+            html_content = cls._add_table_styles(html_content)
             
             return mark_safe(html_content)
             

@@ -32,6 +32,45 @@
         border-radius: 4px;
         box-shadow: 0 1px 3px rgba(0,0,0,.1);
     }
+    
+    /* 表格样式 */
+    .content-container table {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 1rem;
+        background-color: transparent;
+        border-collapse: collapse;
+    }
+    
+    .content-container table th,
+    .content-container table td {
+        padding: 0.75rem;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+        text-align: left;
+    }
+    
+    .content-container table thead th {
+        vertical-align: bottom;
+        border-bottom: 2px solid #dee2e6;
+        background-color: #f8f9fa;
+    }
+    
+    .content-container table tbody tr:nth-of-type(odd) {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+    
+    .content-container table tbody tr:hover {
+        background-color: rgba(0, 0, 0, 0.075);
+    }
+    
+    .table-responsive {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+    }
 </style>
 {% endblock %}
 

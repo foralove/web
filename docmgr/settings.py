@@ -14,7 +14,12 @@ SECRET_KEY = 'django-insecure-0-z=ht!8-a!=o9qe=xo%@kd^%u#t4h(8$^k)!l*3&0)w8(7(hp
 # 安全警告：不要在生产环境中开启调试模式
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost', 
+    '127.0.0.1',
+    '.ngrok-free.app',  # 支持所有ngrok域名
+    '*',  # 开发环境中允许所有主机（仅用于测试）
+]
 
 # 应用定义
 INSTALLED_APPS = [
