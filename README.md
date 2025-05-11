@@ -132,19 +132,13 @@ static/
 ```html
 {% load static %}
 
-<!-- 在<head>部分 -->
 {% block extra_css %}
-<!-- Markdown样式 -->
 <link href="{% static 'md_theme/github.css' %}" rel="stylesheet">
-<!-- KaTeX CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 {% endblock %}
 
-<!-- 在</body>前 -->
 {% block extra_js %}
-<!-- KaTeX JS -->
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-<!-- KaTeX Auto-render Extension -->
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
     onload="renderMathInElement(document.body);"></script>
 <script>

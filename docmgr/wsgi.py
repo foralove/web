@@ -1,7 +1,10 @@
 """
-WSGI config for docmgr project.
+WSGI配置
 
-It exposes the WSGI callable as a module-level variable named ``application``.
+它暴露了WSGI可调用对象作为模块级变量，名为``application``。
+
+更多信息请参阅
+https://docs.djangoproject.com/en/5.0/howto/deployment/wsgi/
 """
 
 import os

@@ -1,4 +1,4 @@
-"""docmgr URL Configuration"""
+"""docmgr URL配置"""
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
@@ -6,19 +6,19 @@ from django.conf.urls.static import static
 from accounts.views import HomeView
 
 urlpatterns = [
-    # Admin interface
+    # 管理界面
     path('admin/', admin.site.urls),
     
-    # Authentication and user accounts
+    # 认证和用户账户
     path('accounts/', include('accounts.urls')),
     
-    # Document management
+    # 文档管理
     path('documents/', include('documents.urls')),
     
-    # Home page
+    # 首页
     path('', HomeView.as_view(), name='home'),
 ]
 
-# Add URL patterns for serving media files during development
+# 开发环境添加媒体文件URL
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 

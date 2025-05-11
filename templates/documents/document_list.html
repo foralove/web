@@ -28,6 +28,7 @@
                             <td>
                                 <a href="{{ document.file.url }}" target="_blank" class="btn btn-sm btn-primary">下载</a>
                                 <a href="{% url 'document_view' document.id %}" class="btn btn-sm btn-info">查看</a>
+                                <a href="{% url 'delete_document' document.id %}" class="btn btn-sm btn-danger" onclick="return confirm('确定要删除文档 {{ document.title }} 吗？')">删除</a>
                             </td>
                         </tr>
                         {% endfor %}

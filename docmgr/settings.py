@@ -1,22 +1,22 @@
 """
-Django settings for docmgr project.
+Django项目配置
 """
 
 from pathlib import Path
 import os
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# 构建项目内部路径，如：BASE_DIR / 'subdir'
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# 安全警告：在生产环境中保持密钥的机密性
 SECRET_KEY = 'django-insecure-0-z=ht!8-a!=o9qe=xo%@kd^%u#t4h(8$^k)!l*3&0)w8(7(hp'
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# 安全警告：不要在生产环境中开启调试模式
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
-# Application definition
+# 应用定义
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -59,7 +59,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'docmgr.wsgi.application'
 
-# Database
+# 数据库
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -67,7 +67,7 @@ DATABASES = {
     }
 }
 
-# Password validation
+# 密码验证
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -83,27 +83,27 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Internationalization
+# 国际化
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
+# 静态文件
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-# Media files
+# 媒体文件
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# Default primary key field type
+# 默认主键字段类型
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Login/Logout redirect URLs
+# 登录/登出重定向URL
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'login' 
 
@@ -111,6 +111,8 @@ LOGOUT_REDIRECT_URL = 'login'
 MARKDOWN_RENDER = {
     'MAX_SIZE': 5 * 1024 * 1024,  # 5MB
     'STYLE_THEME': 'github.css',  # 或 'obsidian.css'
+    # 外部Markdown目录
+    'EXTERNAL_DIRS': r'E:\GitHub\markdown',
     # 可选：启用不安全扩展
     'ENABLE_UNSAFE_EXTENSIONS': False,
     # 可选：扩展配置

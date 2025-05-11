@@ -37,9 +37,7 @@
 
 {% block extra_js %}
 {% if is_markdown %}
-<!-- KaTeX JS -->
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
-<!-- KaTeX Auto-render Extension -->
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
     onload="renderMathInElement(document.body);"></script>
 <script>
@@ -59,26 +57,38 @@
 {% endblock %}
 
 {% block content %}
-<div class="card">
+<div class="card mt-3">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h2 class="mb-0">{{ document.title }}</h2>
+        <h5 class="mb-0">{{ document.title }}</h5>
         <div>
             {% if document.file %}
             <a href="{{ document.file.url }}" class="btn btn-sm btn-primary" target="_blank">下载原文件</a>
             {% endif %}
             <a href="{% url 'document_list' %}" class="btn btn-sm btn-secondary">返回列表</a>
         </div>
-    </div>
-    
-    <div class="card-body">
         {% if document.uploaded_at %}
+        <small class="text-muted">上传于 {{ document.uploaded_at|date:"Y-m-d H:i" }}</small>
+        {% endif %}
+    </div>
+    <div class="card-body">
+        {% if file_type %}
         <div class="mb-3">
-            <small class="text-muted">上传时间: {{ document.uploaded_at|date:"Y-m-d H:i" }}</small>
+            <span class="badge 
+                {% if file_type == 'markdown' %}bg-primary
+                {% elif file_type == 'text' %}bg-secondary
+                {% elif file_type == 'code' %}bg-success
+                {% elif file_type == 'image' %}bg-info text-dark
+                {% elif file_type == 'pdf' %}bg-danger
+                {% elif file_type == 'office' %}bg-warning text-dark
+                {% else %}bg-dark
+                {% endif %}">
+                {{ file_type|title }}
+            </span>
         </div>
         {% endif %}
         
         {% if is_markdown %}
-        <div class="md-container">
+        <div class="content-container">
             {{ html_content|safe }}
         </div>
         {% else %}
